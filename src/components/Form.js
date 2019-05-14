@@ -23,14 +23,13 @@ class Form extends React.Component{
         let body = this.props.data;
 
         //USTAWIC GODZINE
-        body.seance.seats[0] = change.join('')
+        body.seance.seats[this.props.hourIndex] = change.join('')
         const update = {
             "seats": body.seance.seats,
             "email": this.emailRef.current.value,
             "name": this.nameRef.current.value,
             "numer": body.number
         }
-        console.log(update);
         
         //PRZEKAZAC, KTORY FILM
         await fetch(`https://cinemapwr.herokuapp.com/api/movies/${this.props.filmNum}`, {
@@ -46,7 +45,7 @@ class Form extends React.Component{
             })
             .catch(err => console.log(err));
             alert("Bilety zarezerwowano"); 
-            // location.reload();
+            window.location.reload();
         }
     
 

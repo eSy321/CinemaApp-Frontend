@@ -8,6 +8,7 @@ const style={
     height: '600px'
 };
 const filmNum = 299534;
+const hourIndex = 0;
 class App extends React.Component{
     constructor(){
         super();
@@ -43,8 +44,8 @@ class App extends React.Component{
         }
         return <div className='ui container' style={style}>
             <Scene />
-            <SeatsContainer seats = {this.state.data.seance.seats[0]}/> {/*WYBRAC GODZINE*/}
-            <Form data = {this.state.data} filmNum={filmNum}/>
+            <SeatsContainer seats = {this.state.data.seance.seats[hourIndex]}/> {/*WYBRAC GODZINE*/}
+            <Form data = {this.state.data} filmNum={filmNum} hourIndex={hourIndex}/>
         </div>;
     }
 }
