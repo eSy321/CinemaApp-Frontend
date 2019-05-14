@@ -5,7 +5,7 @@ import Form from './Form';
 
 const style={
     backgroundColor: '#f4f4aa',
-    height: '500px'
+    height: '600px'
 };
 
 class App extends React.Component{
