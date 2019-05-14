@@ -10,20 +10,29 @@ const style = {
 
 
 
-const SeatsContainer = (props) => {
+class SeatsContainer extends React.Component {
+    constructor(props){
+        super(props)
 
-    if(props !== []){        
-        const ret = props.seats.split("");
+        this.state = { data: this.props.seats.split("")}
+    }
+
+    render(){        
+        
+        const ret = this.props.seats.split("");
 
         const seats = ret.map((seat, i)=>{
             
-            if (seat === '0') return <Seat key={i} colo='grey'/>;
-            else return <Seat key={i} colo='red' />;
+            if (seat === '0') return <Seat key={i} id={i} stan={0} colo='grey'> </Seat>;
+            else return <Seat key={i} id={i} stan={1} colo='red' />;
         })
-        return <div className='seats-container' style={style}>{seats}</div>;
-    }
-    else{
-        return <div>Loading...</div>
+        return (
+            <div>
+                <div className='seats-container' style={style}>
+                    {seats}
+                </div>
+            </div>
+        );
     }
 }
 

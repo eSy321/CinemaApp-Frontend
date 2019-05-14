@@ -1,6 +1,7 @@
 import React from 'react';
 import Scene from './Scene';
 import SeatsContainer from './SeatsContainer';
+import Form from './Form';
 
 const style={
     backgroundColor: '#f4f4aa',
@@ -23,9 +24,10 @@ class App extends React.Component{
             }
         })
         .then(res => res.json())
-        .then(json => this.setState({data: json[0].seance.seats[0]}))
+        //Tutaj trzeba w miejsce zer wpisać do którego godziny danego filmu się odwołujemy
+        .then(json => this.setState({data: json[0]}))
         .catch (err => console.log(err));
-        console.log(this.state.data)
+
     }
 
     render(){
@@ -41,7 +43,8 @@ class App extends React.Component{
         }
         return <div className='ui container' style={style}>
             <Scene />
-            <SeatsContainer seats = {this.state.data}/>
+            <SeatsContainer seats = {this.state.data.seance.seats[0]}/> {/*WYBRAC GODZINE*/}
+            <Form data = {this.state.data}/>
         </div>;
     }
 }
