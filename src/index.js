@@ -1,9 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDom from 'react-dom'
+import Repertoire from './repertoire'
 
-import App from './components/App';
+const App = () => {
+    return <Repertoire />;
+};
 
-ReactDOM.render(
-    <App/>,
-    document.querySelector('#root')
+ReactDom.render(
+    <App />,
+    document.querySelector("#root")
 );
