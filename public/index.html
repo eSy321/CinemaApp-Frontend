@@ -1,110 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <!-- <script type="text/javascript" src="script.js"></script> -->
-    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <title>Cinema App</title>
-</head>
-<body>
-    <nav>
-        <div class="logo">
-            <h2><i class="fa fa-film" aria-hidden="true"></i> Cinema App</h2>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+        <link rel="stylesheet" href="styleK.css" />
+    </head>
+    <body>
+        <a id="1" href="/Kuba"><input type="button" value="button"></a> <!--do usuniecia (tylko testowo)-->
+        <div id="root">
+            
         </div>
-        <ul class="nav-links">
-            <li><a href="#">Tickets</a></li>
-            <li><a href="#">Movies</a></li>
-            <li><a href="./register.html">Register</a></li>
-            <li><a href="./login.html">Login</a></li>
-        </ul>
-        <div class="bar">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </nav>
-    <div class="wrap">
-        <div id="arrow-left" class="arrow"></div>
-        <div id="slider">
-            <div class="slide slide1">
-                <div class="slideValue">
-                    <span>Avengers: Endgame</span>
-                </div>
-            </div>
-            <div class="slide slide2">
-                <div class="slideValue">
-                    <span>Detective Pikachu</span>
-                </div>
-            </div>
-            <div class="slide slide3">
-                <div class="slideValue">
-                    <span>John Wick 3</span>
-                </div>
-            </div>
-        </div>
-        <div id="arrow-right" class="arrow"></div>
-    </div>
-
-<script>
-        
-let sliderImages = document.querySelectorAll(".slide"),
-  arrowLeft = document.querySelector("#arrow-left"),
-  arrowRight = document.querySelector("#arrow-right"),
-  current = 0;
-
-function reset() {
-  for (let i = 0; i < sliderImages.length; i++) {
-    sliderImages[i].style.display = "none";
-  }
-}
-
-function startSlide() {
-  reset();
-  sliderImages[0].style.display = "block";
-}
-
-// Show prev
-function slideLeft() {
-  reset();
-  sliderImages[current - 1].style.display = "block";
-  current--;
-}
-
-// Show next
-function slideRight() {
-  reset();
-  sliderImages[current + 1].style.display = "block";
-  current++;
-}
-
-// Left arrow click
-arrowLeft.addEventListener("click", function() {
-  if (current === 0) {
-    current = sliderImages.length;
-  }
-  slideLeft();
-});
-
-// Right arrow click
-arrowRight.addEventListener("click", function() {
-  if (current === sliderImages.length - 1) {
-    current = -1;
-  }
-  slideRight();
-});
-
-startSlide();
-
-
-
-/*toggle navbar*/
-    
-
+    </body>
+    <script>
+        var button = document.getElementById("1");
+        button.addEventListener("click", () => {
+            window.localStorage.setItem('filmNum', "299534");       //must be string value ID tytułu index <div id=number>TITLE</div>
+            window.localStorage.setItem('hourIndex', "0");          //must be string value ID godziny 
+        })
     </script>
-</body>
 </html>

@@ -5,19 +5,29 @@ import Form from './Form';
 
 const style={
     backgroundColor: '#f4f4aa',
-    height: '500px'
+    height: '600px'
 };
 
-class App extends React.Component{
+class Kuba extends React.Component{
     constructor(){
         super();
-        this.state = { data: null};
+        this.state = { 
+            data: null,
+            filmNum: null,
+            hourIndex: null
+        };
     }
-    componentDidMount(){
+    componentWillMount(){
+        this.setState({filmNum: window.localStorage.getItem('filmNum')});
+        this.setState({hourIndex: window.localStorage.getItem('hourIndex')});
+
+    }
+    componentDidMount() {
         this.loadData();
     }
+
     async loadData(){
-        await fetch(`https://cinemapwr.herokuapp.com/api/movies/`, {
+        await fetch(`https://cinemapwr.herokuapp.com/api/movies/${this.state.filmNum}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -25,9 +35,8 @@ class App extends React.Component{
         })
         .then(res => res.json())
         //Tutaj trzeba w miejsce zer wpisać do którego godziny danego filmu się odwołujemy
-        .then(json => this.setState({data: json[0]}))
+        .then(json => this.setState({data: json}))
         .catch (err => console.log(err));
-
     }
 
     render(){
@@ -43,10 +52,10 @@ class App extends React.Component{
         }
         return <div className='ui container' style={style}>
             <Scene />
-            <SeatsContainer seats = {this.state.data.seance.seats[0]}/> {/*WYBRAC GODZINE*/}
-            <Form data = {this.state.data}/>
+            <SeatsContainer seats = {this.state.data.seance.seats[this.state.hourIndex]}/> {/*WYBRAC GODZINE*/}
+            <Form data = {this.state.data} filmNum={this.state.filmNum} hourIndex={this.state.hourIndex}/>
         </div>;
     }
 }
 
-export default App;
+export default Kuba;

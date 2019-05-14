@@ -1,9 +1,31 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDom from 'react-dom'
+import {BrowserRouter, Route} from 'react-router-dom'
+import Repertoire from './components/repertoire'
+import Kuba from './components/Kuba'
 
-import App from './components/App';
+const FirstPage = () => {
+    return <Repertoire />
+}
 
-ReactDOM.render(
-    <App/>,
-    document.querySelector('#root')
+const SeancePage = () => {
+    return <Kuba />
+}
+
+const App = () => {
+    return (
+        <div>
+        <BrowserRouter>
+            <div>
+                <Route path="/" exact component={FirstPage}/>
+                <Route path="/Kuba" exact component={SeancePage}/>
+            </div>
+        </BrowserRouter>
+        </div>
+    )
+};
+
+ReactDom.render(
+    <App />,
+    document.querySelector("#root")
 );
