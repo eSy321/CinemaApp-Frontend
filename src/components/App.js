@@ -7,7 +7,7 @@ const style={
     backgroundColor: '#f4f4aa',
     height: '600px'
 };
-
+const filmNum = 299534;
 class App extends React.Component{
     constructor(){
         super();
@@ -17,7 +17,7 @@ class App extends React.Component{
         this.loadData();
     }
     async loadData(){
-        await fetch(`https://cinemapwr.herokuapp.com/api/movies/`, {
+        await fetch(`https://cinemapwr.herokuapp.com/api/movies/${filmNum}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -25,7 +25,7 @@ class App extends React.Component{
         })
         .then(res => res.json())
         //Tutaj trzeba w miejsce zer wpisać do którego godziny danego filmu się odwołujemy
-        .then(json => this.setState({data: json[0]}))
+        .then(json => this.setState({data: json}))
         .catch (err => console.log(err));
 
     }
@@ -44,7 +44,7 @@ class App extends React.Component{
         return <div className='ui container' style={style}>
             <Scene />
             <SeatsContainer seats = {this.state.data.seance.seats[0]}/> {/*WYBRAC GODZINE*/}
-            <Form data = {this.state.data}/>
+            <Form data = {this.state.data} filmNum={filmNum}/>
         </div>;
     }
 }

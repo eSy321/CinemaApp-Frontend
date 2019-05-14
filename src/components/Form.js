@@ -24,17 +24,16 @@ class Form extends React.Component{
 
         //USTAWIC GODZINE
         body.seance.seats[0] = change.join('')
-        console.log(this.emailRef.current.value)
         const update = {
             "seats": body.seance.seats,
             "email": this.emailRef.current.value,
             "name": this.nameRef.current.value,
-            "seance": body.seance
+            "numer": body.number
         }
-         
+        console.log(update);
         
         //PRZEKAZAC, KTORY FILM
-        await fetch(`https://cinemapwr.herokuapp.com/api/movies/299534`, {
+        await fetch(`https://cinemapwr.herokuapp.com/api/movies/${this.props.filmNum}`, {
                 method: "PUT",
                 body: JSON.stringify(update),
                 headers: {
@@ -47,7 +46,7 @@ class Form extends React.Component{
             })
             .catch(err => console.log(err));
             alert("Bilety zarezerwowano"); 
-           
+            // location.reload();
         }
     
 
@@ -57,11 +56,11 @@ class Form extends React.Component{
             <form className="ui form center aligned grid" style={{marginTop:"8px"}} onSubmit={this.handleSubmit}>
                 <div className = "field name">
                     <label>Imię i nazwisko</label>
-                    <input type="text" id="name" ref={this.nameRef} name="name" placeholder="Imię i nazwisko"></input>
+                    <input type="text" id="name" ref={this.nameRef} name="name" placeholder="Imię i nazwisko" required></input>
                 </div>
                 <div className = "field emailer">
                     <label>Email</label>
-                    <input type="text" id="email" ref={this.emailRef} name="name" placeholder="email"></input>
+                    <input type="text" id="email" ref={this.emailRef} name="name" placeholder="email" required></input>
                 </div>
                 <button className="ui button primary middle" value="Rezerwuj bilety">Rezerwuj bilety</button>
             </form>
