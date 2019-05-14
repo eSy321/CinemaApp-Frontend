@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 class Form extends React.Component{
     constructor(props) {
         super(props);
@@ -15,9 +13,20 @@ class Form extends React.Component{
         const data = [...document.querySelectorAll('.seat')].map(elem => elem.attributes.datastan.value);
         
         if (!data.includes("2")){
-            
             return alert('Proszę wybrać miejsca');
         }
+        //liczba siedzen i jakie typy biletow
+        const occupiedSeats = [];
+
+        data.filter((elem, index) => {
+            if(elem === "2"){
+                occupiedSeats.push(index + 1);
+            }
+            return elem
+        });
+
+        console.log(occupiedSeats)
+
         const change = data.map(elem => elem > 1 ? elem = "1" : elem);
 
         let body = this.props.data;
@@ -50,7 +59,6 @@ class Form extends React.Component{
     
 
     render(){
-
         return(
             <form className="ui form center aligned grid" style={{marginTop:"8px"}} onSubmit={this.handleSubmit}>
                 <div className = "field name">
@@ -59,7 +67,7 @@ class Form extends React.Component{
                 </div>
                 <div className = "field emailer">
                     <label>Email</label>
-                    <input type="text" id="email" ref={this.emailRef} name="name" placeholder="email" required></input>
+                    <input type="email" id="email" ref={this.emailRef} name="name" placeholder="email" required></input>
                 </div>
                 <button className="ui button primary middle" value="Rezerwuj bilety">Rezerwuj bilety</button>
             </form>
