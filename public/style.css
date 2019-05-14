@@ -1,0 +1,6 @@
+.seats-container{
+    display: grid;
+    grid-template-columns: repeat(10,1fr);
+    grid-gap: 10px;
+    justify-items: center;
+}
