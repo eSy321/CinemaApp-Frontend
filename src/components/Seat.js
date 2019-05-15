@@ -7,7 +7,6 @@ class Seat extends React.Component{
         this.seatRef=React.createRef();
         this.state = { color: null,
             stan:this.props.stan}
-    
     }
     render(){
         return <div className='ui button seat' id={this.props.id} datastan={this.state.stan} style={{backgroundColor:this.props.colo,width:'50px',height:'50px',borderRadius:'5px'}} ref={this.seatRef} >{this.props.id+1}</div>

@@ -18,16 +18,15 @@ class Kuba extends React.Component{
         };
     }
     componentWillMount(){
-        this.setState({filmNum: window.localStorage.getItem('filmNum')});
-        this.setState({hourIndex: window.localStorage.getItem('hourIndex')});
-
+        this.setState({filmNum: 299537/*window.localStorage.getItem('filmNum')*/});
+        this.setState({hourIndex: 0/*window.localStorage.getItem('hourIndex')*/});
     }
     componentDidMount() {
         this.loadData();
     }
 
     async loadData(){
-        await fetch(`https://cinemapwr.herokuapp.com/api/movies/${this.state.filmNum}`, {
+        await fetch(`https://workingcinema.herokuapp.com/api/movies/${this.state.filmNum}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"

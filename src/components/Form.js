@@ -15,6 +15,7 @@ class Form extends React.Component{
         if (!data.includes("2")){
             return alert('Proszę wybrać miejsca');
         }
+
         //liczba siedzen i jakie typy biletow
         const occupiedSeats = [];
 
@@ -25,7 +26,27 @@ class Form extends React.Component{
             return elem
         });
 
-        console.log(occupiedSeats)
+        /** validate if one place is free between chosen ones and occupied */
+        for(var i = 0; i < data.length; i++){    
+            if (data[i] === "1") {
+                for(var j = 0; j < occupiedSeats.length; j++){
+                    if ((Math.abs(i - occupiedSeats[j]) == "1") || (i - occupiedSeats[j] == "-3")) {
+                        alert("Do not leave one place free!");
+                        return window.location.reload();
+                    }
+                }
+            }
+        }
+
+        /** valdation if there is no one free seat bewtee chosen ones */
+        if(occupiedSeats.length > 1){
+            for(var i = 0; i < occupiedSeats.length; i++) {
+                if (occupiedSeats[i+1] - occupiedSeats[i] == 2) {    
+                    alert("Do not leave one place free!");
+                    return window.location.reload();
+                }
+            }
+        }
 
         const change = data.map(elem => elem > 1 ? elem = "1" : elem);
 
@@ -41,7 +62,7 @@ class Form extends React.Component{
         }
         
         //PRZEKAZAC, KTORY FILM
-        await fetch(`https://cinemapwr.herokuapp.com/api/movies/${this.props.filmNum}`, {
+        await fetch(`https://workingcinema.herokuapp.com/api/movies/${this.props.filmNum}`, {
                 method: "PUT",
                 body: JSON.stringify(update),
                 headers: {

@@ -21,7 +21,7 @@ class Movie extends React.Component {
 
         async loadDataFromDB() {
             /** take all the movies from db */
-            await fetch('https://cinemapwr.herokuapp.com/api/movies/')
+            await fetch('https://workingcinema.herokuapp.com/api/movies/')
                 .then(res => res.json())
                 .then(json => {
                     this.setState({

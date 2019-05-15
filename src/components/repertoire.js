@@ -1,5 +1,6 @@
 import React from 'react';
 import Movie from './movie';
+import Title from './title'
 
 class Repertoire extends React.Component {
     constructor(props){
@@ -18,9 +19,14 @@ class Repertoire extends React.Component {
         const movie = arr.map(function(m, i){
             return <Movie index={i}></Movie>
         })
-        return ( 
+        return (
             <div>
-                {movie}
+                <div>
+                    <Title />
+                </div>
+                <div>
+                    {movie}
+                </div>
             </div>
         );
     } 
