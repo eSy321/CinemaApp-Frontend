@@ -62,28 +62,26 @@ class Movie extends React.Component {
                 .catch(err => console.log(err))
         };
 
-    render() {
-        return (
-            <div key={this.props.index}>
-                <div id={this.state.movieNumberDB[this.props.index]}>
-                    {this.state.movieTitleAPI[this.props.index]}
+        render() {
+            return ( 
+                <div class = 'container'key = {this.props.index}>
+                    <div class = 'title' id = {this.state.movieNumberDB[this.props.index]}>{this.state.movieTitleAPI[this.props.index]}</div> 
+                        <div class = 'container__wrapper'>
+                            <img class = 'image' src = {this.state.movieImgAPI[this.props.index]} alt = 'Plakat filmowy' />
+                            <div class = 'overview' > {this.state.movieOverviewAPI[this.props.index]}</div>  
+                        <div class = 'hours'>
+                            <div onClick = {this.openCinemaHall} class = 'hour' id = "0" > {this.state.movieHourDB_0[this.props.index]}</div>  
+                            <div class = 'hour' id = "1" > {this.state.movieHourDB_1[this.props.index]}</div> 
+                        </div> 
+                    </div>  
                 </div>
-                <img src={this.state.movieImgAPI[this.props.index]}/>
-                <div>
-                    {this.state.movieOverviewAPI[this.props.index]}
-                </div> 
-                <div>
-                    hours
-                    <div id="0">
-                        {this.state.movieHourDB_0[this.props.index]}
-                    </div> 
-                    <div id="1">
-                        {this.state.movieHourDB_1[this.props.index]}
-                    </div> 
-                </div> 
-            </div>
-        )
-    }
+            )
+        }
+
+        openCinemaHall = () => {
+            const idNumber = this.parentElement;
+            console.log('Test: ', idNumber);
+        }
 }
 
 export default Movie
